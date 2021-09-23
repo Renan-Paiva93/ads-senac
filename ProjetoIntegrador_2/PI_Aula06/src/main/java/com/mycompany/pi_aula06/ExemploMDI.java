@@ -1,5 +1,5 @@
 
-package com.mycompany.aula06_pi;
+package com.mycompany.pi_aula06;
 
 import java.awt.Dimension;
 
@@ -100,9 +100,11 @@ public class ExemploMDI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Instanciar um objeto da classe do frame interno
         EditorTextoInterno janelaInterna = new EditorTextoInterno();
         janelaInterna.setVisible(true);
         
+        //Adiciona ao jDesktopPane
        this.jDesktopPane1.add(janelaInterna);
     }//GEN-LAST:event_jButton1ActionPerformed
 

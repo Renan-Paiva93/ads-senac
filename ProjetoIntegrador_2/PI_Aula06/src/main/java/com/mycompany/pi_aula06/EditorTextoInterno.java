@@ -1,5 +1,5 @@
 
-package com.mycompany.aula06_pi;
+package com.mycompany.pi_aula06;
 
 
 public class EditorTextoInterno extends javax.swing.JInternalFrame {

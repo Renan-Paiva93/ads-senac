@@ -1,7 +1,7 @@
 /*
     Fechar somente a janela, trabalhar com todas as telas ao mesmo tempo
 */
-package com.mycompany.aula06_pi;
+package com.mycompany.pi_aula06;
 
 /**
  *
