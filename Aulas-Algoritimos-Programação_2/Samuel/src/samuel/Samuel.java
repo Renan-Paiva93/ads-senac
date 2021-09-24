@@ -1,40 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package samuel;
+package Samuel;
 
+import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
-/**
- *
- * @author renan.paiva
- */
 public class Samuel {
 
-public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
 
-        String text = "";
+        String arquivo = "";
         String stop = ".";
-        String allWords[] = new String[] {};
+        String tdsPalavras[] = new String[] {};
 
-        try (FileReader inputFile = new FileReader("entrada.txt"); BufferedReader br = new BufferedReader(inputFile);) {
-            while (!text.equals(stop)) {
+        try (FileReader inputFile = new FileReader("arquivo.txt"); BufferedReader br = new BufferedReader(inputFile);) {
+            while (!arquivo.equals(stop)) {
 
-                text = br.readLine();
-                text = text.toLowerCase();
-                String words[] = text.split(" ");
+                arquivo = br.readLine();
+                arquivo = arquivo.toLowerCase();
+                String words[] = arquivo.split(" ");
 
                 for (int i = 0; i < words.length; i++) {
-                    if (!words[i].equals("") && !words[i].equals(".")
-                            && !recursiveLinearSearch(allWords, allWords.length - 1, words[i])) {
+                    if (!words[i].equals("") && !words[i].equals(".") && !recursiveLinearSearch(tdsPalavras, tdsPalavras.length - 1, words[i])) {
 
-                        allWords = insertWordInArray(allWords, words[i], allWords.length + 1);
-                        allWords = insertWord(allWords);
+                        tdsPalavras = insertWordInArray(tdsPalavras, words[i], tdsPalavras.length + 1);
+                        tdsPalavras = insertWord(tdsPalavras);
                     }
                 }
             }
@@ -43,16 +33,11 @@ public static void main(String[] args) throws FileNotFoundException, IOException
             e.printStackTrace();
         }
 
-        printArray(allWords);
+        printArray(tdsPalavras);
     }
 
     /**
-     * Insert a word resizing the current array
-     * 
-     * @param currentArray
-     * @param newWord
-     * @param arraySize
-     * @return
+
      */
     public static String[] insertWordInArray(String[] currentArray, String newWord, int arraySize) {
 
@@ -70,10 +55,7 @@ public static void main(String[] args) throws FileNotFoundException, IOException
     }
 
     /**
-     * Insert word reordering elements
      * 
-     * @param currentArray
-     * @return
      */
     public static String[] insertWord(String[] currentArray) {
 
@@ -93,12 +75,7 @@ public static void main(String[] args) throws FileNotFoundException, IOException
 
 
     /**
-     * Find if a word exists in array (linear search)
      * 
-     * @param wordsArray
-     * @param position
-     * @param searchWord
-     * @return
      */
     public static boolean recursiveLinearSearch(String wordsArray[], int position, String searchWord) {
 
@@ -113,16 +90,14 @@ public static void main(String[] args) throws FileNotFoundException, IOException
     }
 
     /**
-     * Prints the current array content and word count
      * 
-     * @param currentArray
      */
     public static void printArray(String[] currentArray) {
 
         for (int i = 0; i < currentArray.length; i++) {
             System.out.println(currentArray[i]);
         }
-
+        System.out.println("");
         System.out.println("total de palavras no dicionario = " + currentArray.length);
     }
 }
