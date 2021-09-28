@@ -5,6 +5,8 @@
  */
 package com.mycompany.pi_aula06;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author renan.paiva
@@ -129,10 +131,24 @@ public class CadastroCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-       
- 
-            int idade = Integer.parseInt(txtIdade.getText());
-   
+            if(txtNome.getText().trim().equals("")){
+                JOptionPane.showMessageDialog(this, "O campo nome é obrigatorio");
+                return;
+            }
+
+
+            //validar o campo 
+            try {
+                int idade = Integer.parseInt(txtIdade.getText());
+                JOptionPane.showMessageDialog(this, "Sucesso");
+            }catch(NumberFormatException erro1){
+                 JOptionPane.showMessageDialog(this, "Ocorreu um erro conversão"); 
+            }catch(Exception erro){
+                JOptionPane.showMessageDialog(this, "Ocorreu um erro genérico");
+                }finally{
+                //limpar campo txtIdade e vai deixar vazio
+                txtIdade.setText("");
+            }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
