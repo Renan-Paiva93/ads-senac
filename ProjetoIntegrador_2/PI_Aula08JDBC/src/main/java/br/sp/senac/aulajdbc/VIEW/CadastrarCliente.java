@@ -5,6 +5,8 @@
  */
 package br.sp.senac.aulajdbc.VIEW;
 
+import br.sp.senac.aulajdbc.DAO.ClienteDAO;
+
 /**
  *
  * @author renan.paiva
@@ -90,6 +92,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
         String nome = txrNome.getText();
         String cpf = txtCpf.getText();
         
+        ClienteDAO.salvar(nome, cpf);
         
     }//GEN-LAST:event_txtSalvarActionPerformed
 
