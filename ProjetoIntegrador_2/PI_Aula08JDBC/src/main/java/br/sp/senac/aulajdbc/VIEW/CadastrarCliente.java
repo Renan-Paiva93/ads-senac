@@ -6,6 +6,8 @@
 package br.sp.senac.aulajdbc.VIEW;
 
 import br.sp.senac.aulajdbc.DAO.ClienteDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,7 +32,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txrNome = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtCpf = new javax.swing.JTextField();
         txtSalvar = new javax.swing.JButton();
@@ -61,7 +63,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txrNome, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
                             .addComponent(txtCpf)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(125, 125, 125)
@@ -74,7 +76,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txrNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -89,11 +91,13 @@ public class CadastrarCliente extends javax.swing.JFrame {
 
     private void txtSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalvarActionPerformed
         
-        String nome = txrNome.getText();
+        String nome = txtNome.getText();
         String cpf = txtCpf.getText();
         
-        ClienteDAO.salvar(nome, cpf);
+        cpf = cpf.trim().replace(".","").replace("-","");
         
+        ClienteDAO.salvar(nome, cpf);
+       
     }//GEN-LAST:event_txtSalvarActionPerformed
 
     /**
@@ -134,8 +138,8 @@ public class CadastrarCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txrNome;
     private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtNome;
     private javax.swing.JButton txtSalvar;
     // End of variables declaration//GEN-END:variables
 }
