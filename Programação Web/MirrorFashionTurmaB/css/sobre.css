@@ -61,3 +61,16 @@ figcaption {
 	float: right;
 	margin: 0 0 10px 10px;
 }
+
+
+p::first-letter{
+	font-weight: bold
+}
+
+h1 + p{
+	text-indent: 0px;
+}
+
+p:first-line{
+	font-variant: small-caps;
+}
