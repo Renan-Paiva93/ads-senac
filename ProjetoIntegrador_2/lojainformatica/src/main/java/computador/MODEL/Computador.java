@@ -10,24 +10,24 @@ package computador.MODEL;
  * @author renan.paiva
  */
 public class Computador {
-    private int processador;
-    private String marca;
+    private static String marca = "RenanPaiva";
+    private String processador;
     private String hd;
 
-    public int getProcessador() {
-        return processador;
-    }
-
-    public void setProcessador(int processador) {
-        this.processador = processador;
-    }
-
-    public String getMarca() {
+    public static String getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public static void setMarca(String marca) {
+        Computador.marca = marca;
+    }
+
+    public String getProcessador() {
+        return processador;
+    }
+
+    public void setProcessador(String processador) {
+        this.processador = processador;
     }
 
     public String getHd() {
@@ -40,5 +40,4 @@ public class Computador {
     
     
 
-    
 }
