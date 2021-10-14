@@ -98,11 +98,11 @@ public class ConsultarComputadores extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-         String nome = txtNome.getText();
+        String nome = txtNome.getText();
         if(nome.trim().equals(" ")){
-            //buscar todos os clientes
+            //Buscar todos os clientes
         }else{
-            //fazer um LIKE
+            //Fazer um LIKE
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 

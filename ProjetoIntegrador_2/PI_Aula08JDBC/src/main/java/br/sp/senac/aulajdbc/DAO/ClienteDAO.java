@@ -70,29 +70,24 @@ public static boolean salvar(String nome, String CPF){
   }
 
 public static ArrayList<Cliente> listarClientes(){
-
-    Connection conexao = null;
     
+    Connection conexao = null;
     ArrayList<Cliente> listaRetorno = new ArrayList<Cliente>();
 
     ResultSet rs = null;
 
-    
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       conexao = DriverManager.getConnection(url,login,senha);
 
-
       PreparedStatement sql = conexao.prepareStatement("Select * FROM cliente");
       rs = sql.executeQuery();
 
-      
       while(rs.next()){
+          
         //Lendo uma linha do resultset...
-
         Cliente objCliente = new Cliente();
 
-     
         objCliente.setIdCliente(rs.getInt("idCliente"));
         objCliente.setCpf(rs.getString("cpf"));
         objCliente.setNome(rs.getString("nome"));
@@ -102,19 +97,58 @@ public static ArrayList<Cliente> listarClientes(){
 
     } catch (Exception e) {
       System.out.println("erro ao listar clientes");
+      
     }finally{
+        
       try {
         if(rs!=null){
-          rs.close();
+            rs.close();
         }
- 
         if(conexao!=null){
           conexao.close();
         }
       } catch (Exception e) {
       }
     }
+    
     return listaRetorno;
   }
+
+    public static boolean excluir(int idCliente){
+    
+    Connection conexao = null;
+    boolean retorno = false;
+
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      conexao = DriverManager.getConnection(url,login,senha);
+
+      PreparedStatement sql = conexao.prepareStatement("DELETE FROM cliente WHERE idCliente=?");
+      sql.setInt(1, idCliente);
+
+     int linhasAfetadas =  sql.executeUpdate();
+     
+     if(linhasAfetadas>0){
+         retorno =true;
+     }else{
+         retorno = false;
+     }
+
+    } catch (Exception e) {
+      System.out.println("erro ao exckuir clientes");
+      
+    }finally{
+        
+      try {
+        if(conexao!=null){
+          conexao.close();
+        }
+      } catch (Exception e) {
+      }
+    }
+    
+    return retorno;
+  }
+
 }
     
