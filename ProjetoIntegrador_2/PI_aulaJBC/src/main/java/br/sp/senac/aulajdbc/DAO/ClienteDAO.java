@@ -5,11 +5,13 @@
  */
 package br.sp.senac.aulajdbc.DAO;
 
+import br.senac.aulajdbc.model.Cliente;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -61,12 +63,24 @@ public class ClienteDAO {
     private static ArrayList<Cliente> listarClientes(){
        
         Connection conexao = null;
+        ArrayList<Cliente> ListaRetorno =  new ArrayList<Cliente>();
+        
         
         try{
             Class.forName("    ");
             conexao =  DriverManager.getConnection(url, login, senha);
             
             PreparedStatement sql = conexao.prepareStatement("Select * FROM cliente");
+            ResultSet rs = sql.executeQuery();
+            
+            while(rs.next()){
+                Cliente objCliente = new Cliente();
+                objCliente.setIdCliente(rs.getInt("idCliente"));
+                objCliente.setCpf(rs.get);
+            }
+            
+            
+            
             
         } cath(Exception e){
         
