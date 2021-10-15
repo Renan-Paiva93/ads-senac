@@ -1,7 +1,11 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package computador.DAO;
 
-package br.sp.senac.aulajdbc.DAO;
-
-import br.sp.senac.jdbc.Model.Cliente;
+import computador.Model.Computador;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,20 +13,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 /**
  *
  * @author renan.paiva
  */
-public class ClienteDAO {
+public class ComputadorDAO {
     
-    public static String  url="jdbc:mysql://localhost:3307/exemplojdbc" + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
+    public static String  url="jdbc:mysql://localhost:3307/lojainformatica" + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
     public static String login="root";
     public static String senha="";
     public static String DRIVER = "com.mysql.cj.jdbc.Driver";
     
-public static boolean salvar(String nome, String CPF){
+    public static boolean salvar(String processador, String hd){
 
     boolean retorno = false;
     Connection conexao = null;
@@ -33,20 +36,11 @@ public static boolean salvar(String nome, String CPF){
      
       //Passo 2 - Utilizar o DriverManager para criar um objeto de conexão
       conexao = DriverManager.getConnection(url,login,senha);
-     
-      //Passo 3 - Criar um objeto Statement
-//      Statement instrucaoSQL = conexao.createStatement();
+    
+    PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO computador (processador,hd) values (?,?) ");
 
-      //Passo 4 - Executar o comando SQL
-//      int linhasAfetadas = instrucaoSQL.executeUpdate("INSERT INTO cliente (nome,cpf) values('" 
-//                                                        + nome 
-//                                                        + "','" 
-//                                                        + CPF + "')");
-
-    PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO cliente (nome,cpf) values (?,?) ");
-
-      comandoSQL.setString(1, nome);
-      comandoSQL.setString(2,CPF);
+      comandoSQL.setString(1, processador);
+      comandoSQL.setString(2,hd);
 
       int linhasAfetadas = comandoSQL.executeUpdate();
   
@@ -55,7 +49,7 @@ public static boolean salvar(String nome, String CPF){
 
       }else{
         retorno = false;
-        throw new Exception("Não foi possível inserir o cliente");
+        throw new Exception("Não foi possível inserir o computador");
       }
    
     } catch (ClassNotFoundException ex) {
@@ -69,10 +63,10 @@ public static boolean salvar(String nome, String CPF){
     return retorno;
   }
 
-public static ArrayList<Cliente> listarClientes(){
+public static ArrayList<Computador> listarComputadores(){
     
     Connection conexao = null;
-    ArrayList<Cliente> listaRetorno = new ArrayList<Cliente>();
+    ArrayList<Computador> listaRetorno = new ArrayList<Computador>();
 
     ResultSet rs = null;
 
@@ -80,23 +74,25 @@ public static ArrayList<Cliente> listarClientes(){
       Class.forName("com.mysql.cj.jdbc.Driver");
       conexao = DriverManager.getConnection(url,login,senha);
 
-      PreparedStatement sql = conexao.prepareStatement("Select * FROM cliente");
+      PreparedStatement sql = conexao.prepareStatement("Select * FROM computador");
       rs = sql.executeQuery();
 
       while(rs.next()){
           
+          
+          //cliente
+          
         //Lendo uma linha do resultset...
-        Cliente objCliente = new Cliente();
+        Computador objComputador = new Computador();
 
-        objCliente.setIdCliente(rs.getInt("idCliente"));
-        objCliente.setCpf(rs.getString("cpf"));
-        objCliente.setNome(rs.getString("nome"));
+        objComputador.setProcessador(rs.getString("processador"));;
+        objComputador.setHd(rs.getString("hd"));
  
-        listaRetorno.add(objCliente);
+        listaRetorno.add(objComputador);
       }
 
     } catch (Exception e) {
-      System.out.println("erro ao listar clientes");
+      System.out.println("erro ao listar peças");
       
     }finally{
         
@@ -114,8 +110,8 @@ public static ArrayList<Cliente> listarClientes(){
     return listaRetorno;
   }
 
-    public static boolean excluir(int idCliente){
-    
+    public static boolean excluir(int CodPeca){
+   
     Connection conexao = null;
     boolean retorno = false;
 
@@ -123,8 +119,8 @@ public static ArrayList<Cliente> listarClientes(){
       Class.forName("com.mysql.cj.jdbc.Driver");
       conexao = DriverManager.getConnection(url,login,senha);
 
-      PreparedStatement sql = conexao.prepareStatement("DELETE FROM cliente WHERE idCliente=?");
-      sql.setInt(1, idCliente);
+      PreparedStatement sql = conexao.prepareStatement("DELETE FROM computador WHERE CodPeca=?");
+      sql.setInt(1, CodPeca);
 
      int linhasAfetadas =  sql.executeUpdate();
      
@@ -135,7 +131,7 @@ public static ArrayList<Cliente> listarClientes(){
      }
 
     } catch (Exception e) {
-      System.out.println("erro ao exckuir clientes");
+      System.out.println("erro ao exckuir peças");
       
     }finally{
         
@@ -149,6 +145,5 @@ public static ArrayList<Cliente> listarClientes(){
     
     return retorno;
   }
-
-}
     
+}

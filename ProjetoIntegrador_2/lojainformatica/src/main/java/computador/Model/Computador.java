@@ -3,16 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package computador.MODEL;
-
+package computador.Model;
+//processdor
 /**
  *
  * @author renan.paiva
  */
 public class Computador {
     private static String marca = "RenanPaiva";
+    
+    private int CodPeca;
     private String processador;
     private String hd;
+
+    public Computador() {
+        
+    }
 
     public static String getMarca() {
         return marca;
@@ -21,6 +27,15 @@ public class Computador {
     public static void setMarca(String marca) {
         Computador.marca = marca;
     }
+
+    public int getCodPeca() {
+        return CodPeca;
+    }
+
+    public void setCodPeca(int CodPeca) {
+        this.CodPeca = CodPeca;
+    }
+
 
     public String getProcessador() {
         return processador;
@@ -38,6 +53,4 @@ public class Computador {
         this.hd = hd;
     }
     
-    
-
 }
