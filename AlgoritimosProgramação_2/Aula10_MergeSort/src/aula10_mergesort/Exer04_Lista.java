@@ -20,4 +20,16 @@ package aula10_mergesort;
  */
 public class Exer04_Lista {
     
+    public static void main(String[] args) {
+        int[] a = {1,3,6,7};
+        int[] b = {2,4,5};
+        int[] c = intercalar(a,b);
+        
+        
+        
+        
+    }
+    
+    
+    
 }
