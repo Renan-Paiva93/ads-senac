@@ -1,21 +1,56 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package aula10_mergesort;
 
-/**
- *
- * @author renan.paiva
- */
 public class Aula10_MergeSort {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         // TODO code application logic here
+          int[] v = {3, 5, 9, 7};
+    mergeSort(0, v.length, v);
+    for (int i = 0; i < v.length; i++) {
+      System.out.print(v[i] + " ");
+    }
+  }
+
+  public static void mergeSort(int p, int n, int[] v) {
+    if (p < n - 1) {
+      int q = (p + n) / 2;
+      mergeSort(p, q, v);
+      mergeSort(q, n, v);
+      intercala(p, q, n, v);
+    }
+  }
+
+  public static void intercala(int p, int q, int n, int[] v) {
+    int[] w = new int[n - p];
+    int i = p;
+    int j = q;
+    int k = 0;
+    while (i < q && j < n) {
+      if (v[i] <= v[j]) {
+        w[k] = v[i];
+        i++;
+      }
+      else {
+        w[k] = v[j];
+        j++;
+      }
+      k++;
+    }
+    while (i < q) {
+      w[k] = v[i];
+      i++;
+      k++;
+    }
+    while (j < n) {
+      w[k] = v[j];
+      j++;
+      k++;
+    }
+    for (int x = p, y = 0; x < n; x++, y++) {
+      v[x] = w[y];
+    }
+  }
     }
     
-}
+
