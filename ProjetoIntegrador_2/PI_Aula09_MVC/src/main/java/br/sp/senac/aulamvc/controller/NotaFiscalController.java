@@ -15,6 +15,8 @@ import br.sp.senac.aulamvc.model.NotaFiscal;
  */
 public class NotaFiscalController {
     
+    // A CONTROLLER conversa com classe VIEW (utilizada as entradas)
+    
     public static boolean salvar(int pNumeroNota, double pValorNota){
         
         NotaFiscal nota = new NotaFiscal();
@@ -22,9 +24,7 @@ public class NotaFiscalController {
         nota.setValorNota(pValorNota);
         
         return NotaFiscalDAO.salvar(nota);
-        
-        
-        
+               
     }
     
 }

@@ -6,11 +6,15 @@
 package br.sp.senac.aulamvc.DAO;
 
 import br.sp.senac.aulamvc.model.NotaFiscal;
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- *
- * @author Dell
+ * A DAO conversa com BANCO DE DADOS
  */
 public class NotaFiscalDAO {
     
@@ -18,37 +22,50 @@ public class NotaFiscalDAO {
     public static String login="root";
     public static String senha="";
     
-    
-    
+   
     public static boolean salvar(NotaFiscal obj){
         
+        boolean retorno = false;
         Connection conexao = null;
-        PreparedStamente instrucaoSQL = null;
+        PreparedStatement instrucaoSQL = null;
+        
+        
+        //PreparedStament instrucaoSQL = null;
+        
         
         try {
-            //Carregadr o driver
+            //ETAPA 1 - Carregadr o driver
                 Class.forName("com.mysql.cj.jdbc.Driver");
           
-          //2º passo - abrir conexao
-
+          //ETAPA 2  - Abrir conexao (banco de dados)
           conexao = DriverManager.getConnection(url, login, senha);
           
-          instrucaoSQL = conexao.prepareStatement("INSERT INTO NotaFiscal VALUES (?,?)");
-          instrucaoSQL.setInt(1,obj.getNumeroNota());
-          instrucaoSQL.setDouble(2, obj.getValorNota());
-
-
-          instrucaoSQL
-            
+          instrucaoSQL = conexao.prepareStatement("INERT INTO NotaFiscal(numeroNota, valorNota) VALUES (?,?");
+          
+          instrucaoSQL.setInt(1,obj.getIdNota());
+          instrucaoSQL.setDouble(2,obj.getValorNota());
+          
+          int LinhasAfetadas = instrucaoSQL.executeUpdate();
+          
+          if(LinhasAfetadas > 0){
+              
+          }else{
+             retorno = true; 
+          }
+            retorno = false;
             
         } catch (Exception e) {
-            
+            retorno = false;
+        } finally {
+           if(conexao != null) {
+               try {
+                   conexao.close(); //liberar a conexação com banco
+               } catch (SQLException ex) {
+                   Logger.getLogger(NotaFiscalDAO.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           } 
         }
-        
-        //TODO: Fazer o insert no banco de dados...
-        
-        return false;
-        
+        return retorno;
     }
     
 }

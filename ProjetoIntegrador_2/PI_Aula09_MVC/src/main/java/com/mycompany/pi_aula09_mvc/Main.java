@@ -18,10 +18,9 @@ public class Main {
      */
     public static void main(String[] args) {
         
+        //estanciar nota fiscal view
         NotaFiscalView telaInicial = new NotaFiscalView();
         telaInicial.setVisible(true);
         
-        
     }
-    
 }

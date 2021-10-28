@@ -8,11 +8,12 @@ package br.sp.senac.aulamvc.model;
 /**
  *
  * Definir as estruturas da classes
+ * criar atributos, compotentes da nota fiscla
  * 
  */
 public class NotaFiscal {
     
-    
+
     private int idNota;
     private int numeroNota;
     private double valorNota;

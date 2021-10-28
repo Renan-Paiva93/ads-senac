@@ -5,6 +5,7 @@
  */
 package br.sp.senac.aulamvc.view;
 
+import br.sp.senac.aulamvc.controller.NotaFiscalController;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,7 +40,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setText("Valor:");
 
@@ -93,14 +94,14 @@ public class NotaFiscalView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnSalvar});
@@ -114,7 +115,7 @@ public class NotaFiscalView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCancelar, btnSalvar});
@@ -124,15 +125,20 @@ public class NotaFiscalView extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
-        int numNota = Integer.parseInt(txtNumeroNota.getSelectedText());
+        //TODO: Validar tipo de dado correto
+        //TODO: try_cath
+        int numNota = Integer.parseInt(txtNumeroNota.getText());
         double valNota = Double.parseDouble(txtValor.getText());
         
-        boolean 
+        boolean retorno = NotaFiscalController.salvar(numNota, valNota);
         
-        if( NotaFiscaController.salvar(numNota, valNota)){
-            JOptionPane.showMessageDialog(this, evt, "Nota Fiscal gravada com sucesso");
-            
-        }
+         if( retorno == true ) {
+             JOptionPane.showMessageDialog(this, "Nota Fiscal gravada com sucesso!");
+         } else {
+             JOptionPane.showConfirmDialog(this, "Falha na gravação!");
+         }
+        
+        
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 
