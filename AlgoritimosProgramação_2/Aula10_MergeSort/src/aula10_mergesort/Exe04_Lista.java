@@ -20,7 +20,7 @@ import java.util.Arrays;
  *
  * @author renan.paiva
  */
-public class Exer04_Lista {
+public class Exe04_Lista {
     
     public static void main(String[] args) {
         int[] a = {1,3,6,7};
