@@ -9,7 +9,9 @@ import br.sp.senac.aulamvc.model.NotaFiscal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class NotaFiscalDAO {
     
-    public static String url="jdbc:mysql://localhost:3306/basenotafiscal?useTimezone=true&serverTimezone=UTC&useSSL=false";
+    public static String url="jdbc:mysql://localhost:3307/basenotafiscal?useTimezone=true&serverTimezone=UTC&useSSL=false";
     public static String login="root";
     public static String senha="";
     
@@ -66,6 +68,65 @@ public class NotaFiscalDAO {
            } 
         }
         return retorno;
+    }
+    
+    public static ArrayList<NotaFiscal> consultar() {
+        
+        ArrayList<NotaFiscal> listaRetorno = new ArrayList<>();
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        ResultSet rs = null; // retorna obj que consulta no banco
+        
+        try {
+            //ETAPA 1 - Carregadr o driver
+                Class.forName("com.mysql.cj.jdbc.Driver");
+          
+          //ETAPA 2  - Abrir conexao (banco de dados)
+          conexao = DriverManager.getConnection(url, login, senha);
+          
+          //ETAPA 3 - Executar um comando SQL
+         instrucaoSQL = conexao.prepareStatement("SELECT * FROM NotaFiscal");
+         
+        rs = instrucaoSQL.executeQuery();
+        
+        while(rs.next()){
+            
+            NotaFiscal obj = new NotaFiscal();
+            obj.setIdNota(rs.getInt("idNota"));
+            obj.setNumeroNota(rs.getInt("numeroNota"));
+            obj.setValorNota(rs.getDouble("valorNota"));
+            
+            listaRetorno.add(obj);
+            
+        }
+            
+            
+        } catch (Exception e) {
+            
+            listaRetorno = null;
+            
+        } finally {
+            
+            if(conexao != null){
+                try {
+                    conexao.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NotaFiscalDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+            
+            if(rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(NotaFiscalDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+        }
+        
+        return listaRetorno;
+        
     }
     
 }

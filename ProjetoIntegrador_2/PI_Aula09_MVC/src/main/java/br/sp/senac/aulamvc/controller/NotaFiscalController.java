@@ -7,6 +7,7 @@ package br.sp.senac.aulamvc.controller;
 
 import br.sp.senac.aulamvc.DAO.NotaFiscalDAO;
 import br.sp.senac.aulamvc.model.NotaFiscal;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,5 +27,18 @@ public class NotaFiscalController {
         return NotaFiscalDAO.salvar(nota);
                
     }
+    
+    public static ArrayList<String[]> consultar() {
+        
+      ArrayList<NotaFiscal> listaRetorno = NotaFiscalDAO.consultar();
+      
+      
+        for (NotaFiscal notaFiscal : listaRetorno) {
+            
+        }
+        return null;
+        
+    }
+    
     
 }
