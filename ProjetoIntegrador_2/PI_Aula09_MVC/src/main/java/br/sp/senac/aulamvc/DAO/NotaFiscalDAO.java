@@ -20,10 +20,10 @@ import java.util.logging.Logger;
  */
 public class NotaFiscalDAO {
     
-    public static String url="jdbc:mysql://localhost:3307/basenotafiscal?useTimezone=true&serverTimezone=UTC&useSSL=false";
+    public static String url="jdbc:mysql://localhost:3306/basenotafiscal?useTimezone=true&serverTimezone=UTC&useSSL=false";
     public static String login="root";
-    public static String senha="";
-    
+    public static String senha="admin";
+    public static String DRIVER = "com.mysql.cj.jdbc.Driver";
    
     public static boolean salvar(NotaFiscal obj){
         

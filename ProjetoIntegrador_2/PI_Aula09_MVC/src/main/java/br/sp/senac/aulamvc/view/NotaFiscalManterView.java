@@ -87,6 +87,7 @@ public class NotaFiscalManterView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        txtExcluir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtExcluir.setText("Excluir");
         txtExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,17 +127,8 @@ public class NotaFiscalManterView extends javax.swing.JFrame {
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         
-       ArrayList<String[]> lstRetorno = NotaFiscalController.consultar();
-      
-       DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+       recarregarTabela();
        
-       //Limpar a tabela
-       modelo.setRowCount(0);
-
-        for (String[] item : lstRetorno) {
-        modelo.addRow(item);
-        
-      }
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExcluirActionPerformed
@@ -148,8 +140,7 @@ public class NotaFiscalManterView extends javax.swing.JFrame {
 
       if( NotaFiscalController.excluir(ID)){
         JOptionPane.showMessageDialog(this, "Exclusão realizada com sucesso!");
-        //TODO: Fazer nova consulta para atualizar a table
-        
+            recarregarTabela();
       }else{
         JOptionPane.showMessageDialog(this, "Falha na exclusão!");
       }
@@ -162,6 +153,22 @@ public class NotaFiscalManterView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtExcluirActionPerformed
 
+    public void recarregarTabela(){
+        
+       ArrayList<String[]> lstRetorno = NotaFiscalController.consultar();
+      
+       DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+       
+       //Limpar a tabela
+       modelo.setRowCount(0);
+
+        for (String[] item : lstRetorno) {
+        modelo.addRow(item);
+        
+      }
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
