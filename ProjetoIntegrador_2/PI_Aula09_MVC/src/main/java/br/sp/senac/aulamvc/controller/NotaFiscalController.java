@@ -21,7 +21,7 @@ public class NotaFiscalController {
     public static boolean salvar(int pNumeroNota, double pValorNota){
         
         NotaFiscal nota = new NotaFiscal();
-        nota.setIdNota(pNumeroNota);
+        nota.setNumeroNota(pNumeroNota);
         nota.setValorNota(pValorNota);
         
         return NotaFiscalDAO.salvar(nota);

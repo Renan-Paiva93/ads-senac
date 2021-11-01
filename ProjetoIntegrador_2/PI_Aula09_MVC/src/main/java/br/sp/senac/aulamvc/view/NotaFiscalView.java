@@ -131,14 +131,13 @@ public class NotaFiscalView extends javax.swing.JFrame {
         double valNota = Double.parseDouble(txtValor.getText());
         
         boolean retorno = NotaFiscalController.salvar(numNota, valNota);
+                
         
-         if( retorno == true ) {
+         if(retorno == true) {
              JOptionPane.showMessageDialog(this, "Nota Fiscal gravada com sucesso!");
          } else {
              JOptionPane.showConfirmDialog(this, "Falha na gravação!");
          }
-        
-        
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 

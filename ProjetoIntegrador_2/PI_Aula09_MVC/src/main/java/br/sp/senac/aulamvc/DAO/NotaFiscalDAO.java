@@ -37,31 +37,30 @@ public class NotaFiscalDAO {
         
         try {
             //ETAPA 1 - Carregadr o driver
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName(DRIVER);
           
-          //ETAPA 2  - Abrir conexao (banco de dados)
-          conexao = DriverManager.getConnection(url, login, senha);
+          //2º passo - abrir conexao
+            conexao = DriverManager.getConnection(url, login, senha);
+
+            instrucaoSQL = conexao.prepareStatement("INSERT INTO NotaFiscal (numeroNota,valorNota) VALUES (?,?)");
+            instrucaoSQL.setInt(1,obj.getNumeroNota());
+            instrucaoSQL.setDouble(2, obj.getValorNota());
           
-          instrucaoSQL = conexao.prepareStatement("INERT INTO NotaFiscal(numeroNota, valorNota) VALUES (?,?");
-          
-          instrucaoSQL.setInt(1,obj.getIdNota());
-          instrucaoSQL.setDouble(2,obj.getValorNota());
-          
-          int LinhasAfetadas = instrucaoSQL.executeUpdate();
-          
-          if(LinhasAfetadas > 0){
+            
+          int linhasAfetadas = instrucaoSQL.executeUpdate();
+            if(linhasAfetadas>0){
+                retorno = true;
+            }else{
+                retorno = false;
+            }
               
-          }else{
-             retorno = true; 
-          }
-            retorno = false;
             
         } catch (Exception e) {
             retorno = false;
         } finally {
            if(conexao != null) {
                try {
-                   conexao.close(); //liberar a conexação com banco
+                   conexao.close(); //libera a conexação com banco
                } catch (SQLException ex) {
                    Logger.getLogger(NotaFiscalDAO.class.getName()).log(Level.SEVERE, null, ex);
                }

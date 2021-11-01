@@ -126,37 +126,31 @@ public class NotaFiscalManterView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        
-       recarregarTabela();
-       
+        recarregarTabela();
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExcluirActionPerformed
         
-       if(jTable1.getSelectedRow()>=0){
+      if(jTable1.getSelectedRow()>=0){
 
       int indiceLinha = jTable1.getSelectedRow();
       int ID = Integer.parseInt(String.valueOf(jTable1.getValueAt(indiceLinha, 0)));
 
-      if( NotaFiscalController.excluir(ID)){
+      if(NotaFiscalController.excluir(ID)){
         JOptionPane.showMessageDialog(this, "Exclusão realizada com sucesso!");
-            recarregarTabela();
+        recarregarTabela();
       }else{
-        JOptionPane.showMessageDialog(this, "Falha na exclusão!");
+            JOptionPane.showMessageDialog(this, "Falha na exclusão!");
       }
-
-    }else{
-
-      JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela!");
-
-    }
-        
+        }else{
+            JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela!");
+        }    
     }//GEN-LAST:event_txtExcluirActionPerformed
 
     public void recarregarTabela(){
         
        ArrayList<String[]> lstRetorno = NotaFiscalController.consultar();
-      
+    
        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
        
        //Limpar a tabela
