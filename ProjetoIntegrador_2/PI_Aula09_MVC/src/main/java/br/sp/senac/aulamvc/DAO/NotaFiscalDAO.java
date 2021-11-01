@@ -129,4 +129,48 @@ public class NotaFiscalDAO {
         
     }
     
+    public static boolean excluir(int ID){
+        
+        boolean retorno = false;
+        Connection conexao = null;
+        PreparedStatement instrucaoSQL = null;
+        
+        
+        //PreparedStament instrucaoSQL = null;
+        
+        
+        try {
+            //ETAPA 1 - Carregadr o driver
+                Class.forName("com.mysql.cj.jdbc.Driver");
+          
+          //ETAPA 2  - Abrir conexao (banco de dados)
+          conexao = DriverManager.getConnection(url, login, senha);
+          
+          instrucaoSQL = conexao.prepareStatement("DELETE FROM NotaFiscal WHERE idNota = ?");
+          
+          instrucaoSQL.setInt(1, ID);
+
+          int LinhasAfetadas = instrucaoSQL.executeUpdate();
+          
+          if(LinhasAfetadas > 0){
+              
+          }else{
+             retorno = true; 
+          }
+            retorno = false;
+            
+        } catch (Exception e) {
+            retorno = false;
+        } finally {
+           if(conexao != null) {
+               try {
+                   conexao.close(); //liberar a conexação com banco
+               } catch (SQLException ex) {
+                   Logger.getLogger(NotaFiscalDAO.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           } 
+        }
+        return retorno;
+    }
+    
 }

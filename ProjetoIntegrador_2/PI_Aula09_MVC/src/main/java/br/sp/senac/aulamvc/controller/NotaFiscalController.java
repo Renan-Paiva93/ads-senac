@@ -28,17 +28,29 @@ public class NotaFiscalController {
                
     }
     
-    public static ArrayList<String[]> consultar() {
-        
-      ArrayList<NotaFiscal> listaRetorno = NotaFiscalDAO.consultar();
-      
-      
-        for (NotaFiscal notaFiscal : listaRetorno) {
-            
-        }
-        return null;
-        
+    public static boolean excluir(int ID){   
+        return NotaFiscalDAO.excluir(ID);     
     }
+    
+    public static ArrayList<String[]> consultar(){
+
+
+    ArrayList<NotaFiscal> listaRetorno = NotaFiscalDAO.consultar();
+    ArrayList<String[]> retornoView = new ArrayList<>();
+
+     
+    for (NotaFiscal notaFiscal : listaRetorno) {
+
+            retornoView.add(new String[] {
+
+              String.valueOf(notaFiscal.getIdNota()),
+              String.valueOf(notaFiscal.getNumeroNota()),
+              String.valueOf(notaFiscal.getValorNota())
+              }
+          );
+    } 
+    return retornoView;     
+  }
     
     
 }

@@ -5,6 +5,11 @@
  */
 package br.sp.senac.aulamvc.view;
 
+import br.sp.senac.aulamvc.controller.NotaFiscalController;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Dell
@@ -33,12 +38,18 @@ public class NotaFiscalManterView extends javax.swing.JFrame {
         txtNumeroNota = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        txtExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         txtBuscar.setText("Buscar");
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("N° Notal Fiscal");
 
@@ -76,6 +87,13 @@ public class NotaFiscalManterView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        txtExcluir.setText("Excluir");
+        txtExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,11 +102,13 @@ public class NotaFiscalManterView extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(21, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(83, 83, 83))))
+                        .addGap(83, 83, 83))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtExcluir))
+                        .addContainerGap(21, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,11 +117,50 @@ public class NotaFiscalManterView extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        
+       ArrayList<String[]> lstRetorno = NotaFiscalController.consultar();
+      
+       DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+       
+       //Limpar a tabela
+       modelo.setRowCount(0);
+
+        for (String[] item : lstRetorno) {
+        modelo.addRow(item);
+        
+      }
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void txtExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExcluirActionPerformed
+        
+       if(jTable1.getSelectedRow()>=0){
+
+      int indiceLinha = jTable1.getSelectedRow();
+      int ID = Integer.parseInt(String.valueOf(jTable1.getValueAt(indiceLinha, 0)));
+
+      if( NotaFiscalController.excluir(ID)){
+        JOptionPane.showMessageDialog(this, "Exclusão realizada com sucesso!");
+        //TODO: Fazer nova consulta para atualizar a table
+        
+      }else{
+        JOptionPane.showMessageDialog(this, "Falha na exclusão!");
+      }
+
+    }else{
+
+      JOptionPane.showMessageDialog(this, "Selecione uma linha da tabela!");
+
+    }
+        
+    }//GEN-LAST:event_txtExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,6 +203,7 @@ public class NotaFiscalManterView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton txtBuscar;
+    private javax.swing.JButton txtExcluir;
     private javax.swing.JTextField txtNumeroNota;
     // End of variables declaration//GEN-END:variables
 }
