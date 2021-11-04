@@ -16,11 +16,13 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        Fracao f = new Fracao();
-        f.numerador = 10;
-        f.denominador = 2;
-        System.out.println(f.numerador + "/" + f.denominador);
+        Fracao f1 = new Fracao(3,4);
+        Fracao f2 = new Fracao(5,1);
+     
+        System.out.println(f1.getNumerador() + "/" + f1.getDenominador());
         
+        System.out.println(f2.getNumerador() + "/" + f2.getDenominador());
         
+
     } 
 }
