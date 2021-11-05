@@ -5,7 +5,8 @@ public class Aula10_MergeSort {
 
     public static void main(String[] args) {
         // TODO code application logic here
-          int[] v = {3, 5, 9, 7};
+          //int[] v = {3, 5, 9, 7};
+          int[] v = {5, 8, 2, 1, 7, 4}; // exercicio 1 da ADO2
     mergeSort(0, v.length, v);
     for (int i = 0; i < v.length; i++) {
       System.out.print(v[i] + " ");

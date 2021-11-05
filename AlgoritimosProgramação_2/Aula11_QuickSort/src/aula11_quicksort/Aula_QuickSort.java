@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package aula11_quicksort;
 
 import java.util.Arrays;
 
-/**
- *
- * @author Dell
- */
 public class Aula_QuickSort {
     
     public static void main(String[] args) {
@@ -19,23 +11,20 @@ public class Aula_QuickSort {
         System.out.println(Arrays.toString(v));
     }
     
-   public static int quickSort([] v, int p, int r) {
+   public static void quickSort(int[] v, int p, int r) {
     if(p < r){
-        int pivo = particao(v,p, r);
+        int pivo = particao(v, p, r);
+        quickSort(v, pivo + 1, r);
         quickSort(v, pivo + 1, r);
     }
 }
-    
-    
-    
-    
     
     public static int particao(int[]v, int p, int r){
         int c = v[p]; //pivo
         int i = p + 1;
         int j = r;
         while(i <= j){
-           if(v[i] <= c){
+           if(v[i] <= c) {
                i++;
            }
            else if(v[j] > c){
@@ -49,6 +38,8 @@ public class Aula_QuickSort {
                j--;
            }
         }
-        
+        v[p] = v [j];
+        v[j] = c;
+        return j;
     }
 }
