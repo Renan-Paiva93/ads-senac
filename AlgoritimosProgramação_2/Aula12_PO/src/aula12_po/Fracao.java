@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package aula12_po;
 
-/**
- *
- * @author Dell
- */
 public class Fracao {
         
         //atributo
@@ -18,6 +10,19 @@ public class Fracao {
         public Fracao(int numerador, int denominador){
             this.numerador = numerador;
             this.denominador = denominador;
+        }
+        
+        //métodos
+        public Fracao soma(Fracao f){
+            int num = this.numerador * f.denominador +
+                    this.denominador * f.numerador;
+            int dent =  this.denominador * f.denominador;
+            
+            return new Fracao(num, denominador);
+        }
+        
+        public void apresentar(){
+            System.out.printf("%d/%d\n", numerador, denominador);
         }
         
         // getters e setters
