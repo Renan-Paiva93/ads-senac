@@ -21,8 +21,29 @@ public class Fracao {
             return new Fracao(num, denominador);
         }
         
+        public Fracao multiplicacao(Fracao f){
+            int num = numerador * f.numerador;
+            int den = denominador * f.denominador;
+            return new Fracao(num, den);
+        }
+        
+        public Fracao divisao(Fracao f){
+            int num = numerador * f.denominador;
+            int den = denominador * f.numerador;
+            return new Fracao(num, den);
+        }
+        
+        public boolean igualdade(Fracao f){
+            return numerador - f.denominador == denominador * f.numerador;
+        }
+        
         public void apresentar(){
             System.out.printf("%d/%d\n", numerador, denominador);
+        }
+        
+        @Override
+        public String toString(){
+            return numerador + "/" + denominador;
         }
         
         // getters e setters
