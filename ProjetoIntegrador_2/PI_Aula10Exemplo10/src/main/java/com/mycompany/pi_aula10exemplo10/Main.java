@@ -18,8 +18,18 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Date diaDeHoje = new Date();
-        System.out.println(diaDeHoje);
+        Date dataInicial = new Date();
+        Date dataFinal = new Date();
+        
+        // usar no relatórios Sintético
+        if(dataInicial.after(dataFinal)){
+            System.out.println("Data inicial deve ser menor que a data final!");
+        }
+        
+        
+        
+        
+       
         
         
         
