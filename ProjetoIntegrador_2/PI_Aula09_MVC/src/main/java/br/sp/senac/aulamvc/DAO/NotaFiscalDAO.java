@@ -69,6 +69,8 @@ public class NotaFiscalDAO {
         return retorno;
     }
     
+    
+    
     public static ArrayList<NotaFiscal> consultar() {
         
         ArrayList<NotaFiscal> listaRetorno = new ArrayList<>();

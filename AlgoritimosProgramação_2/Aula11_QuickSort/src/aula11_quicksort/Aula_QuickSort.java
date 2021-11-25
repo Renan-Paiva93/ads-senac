@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Aula_QuickSort {
     
     public static void main(String[] args) {
-    int [] v ={5,6,2,7,9,1,8,3,7};
+    int [] v ={5, 6, 2, 7, 9, 1, 8, 3, 7};
         quickSort(v, 0, v.length);
         System.out.println(Arrays.toString(v));
     }
@@ -14,7 +14,7 @@ public class Aula_QuickSort {
    public static void quickSort(int[] v, int p, int r) {
     if(p < r){
         int pivo = particao(v, p, r);
-        quickSort(v, pivo + 1, r);
+        quickSort(v, p, pivo - 1);
         quickSort(v, pivo + 1, r);
     }
 }
