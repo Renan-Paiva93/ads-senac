@@ -13,6 +13,11 @@ public class Main {
         Scanner leitor = new Scanner(System.in);
         Pilha p = new Pilha();
         
+        System.out.println("Numero Natural: ");
+        int n = leitor.nextInt();
+        
+        
+        
         
         
     }

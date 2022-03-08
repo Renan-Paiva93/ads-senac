@@ -42,7 +42,7 @@ public class NotaFiscalDAO {
           //2º passo - abrir conexao
             conexao = DriverManager.getConnection(url, login, senha);
 
-            instrucaoSQL = conexao.prepareStatement("INSERT INTO NotaFiscal (numeroNota,valorNota) VALUES (?,?)");
+            instrucaoSQL = conexao.prepareStatement("INSERT INTO NotaFiscal () VALUES (?,?)");
             instrucaoSQL.setInt(1,obj.getNumeroNota());
             instrucaoSQL.setDouble(2, obj.getValorNota());
           
