@@ -12,9 +12,9 @@ public class Exmp_02_InsertSort {
     
     public static void main(String[] args) {
         
-        String[] arr ={"Atlanta","New York","Dallas","Omaha","San Francisco"};
+        String[] palavras ={"DRAGÃO","PIRATA","CANUDO","FEIJÃO","MEDIDA","CAVALO"};
         
-        String sortedArray[] = InsertSortStrings(arr, arr.length);
+        String sortedArray[] = InsertSortStrings(palavras, palavras.length);
         
         for (int i = 0; i < sortedArray.length; i++) {
             System.out.println(sortedArray[i]);
