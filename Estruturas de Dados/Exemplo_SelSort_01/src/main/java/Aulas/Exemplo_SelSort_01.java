@@ -12,15 +12,15 @@ public class Exemplo_SelSort_01 {
             
         System.out.println("Programa: Exemplo_SelSort_01.class\n");
         
-        String nomes[][] = new String[6][1];
+        String nomes[][] = new String[4][0];
         int i;
-        for(i=0;i<6;i++){
+        for(i=0;i<4;i++){
             nomes[i][0] = ler.next();
         }
         
-        ssort(nomes, 6);
+        ssort(nomes, 4);
         
-        for(i=0;i<6;i++){
+        for(i=0;i<4;i++){
             System.out.println(Arrays.toString(nomes[i]));
         }
             
