@@ -14,7 +14,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+<<<<<<< HEAD
+    "test": "react-scripts script",
+=======
     "test": "react-scripts test",
+>>>>>>> 89445a40aeaa466beb97d36a8d6a1fee274c0852
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
