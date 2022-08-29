@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exemplo JavaScript</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <article>
+            <h1>
+                Exemplos Javascript
+            </h1>
+            <p>Nome: <span id="nome">Fulano da Silva</span></p>
+            <p>Data de Nascimento: <span id="dataNascimento">20/05/1993</span></p>
+            <ul id="conhecimento">
+                <li>Javascript</li>
+                <li>SQL</li>
+                <li>Spring</li>
+            </ul>
+        </article>
+        
+        <script>
+            
+            var variavelVar = 10;
+            let variavelLet = 20;
+            
+            for (let i = 0; i < 100; i++) {
+                var variavelVar = i;
+                let variavelLet = i;
+                alert ('Alert 1: \nvariavelVar: ' + variavelVar + '\n' + 'variavelLet: ' + variavelLet );
+        }
+        
+         alert ('Alert 2: \nvariavelVar: ' + variavelVar + '\n' + 'variavelLet: ' + variavelLet );
+         
+        </script>
+        
+    </body>
+</html>
