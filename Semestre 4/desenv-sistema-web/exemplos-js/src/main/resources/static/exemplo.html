@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Exemplo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .estilo {
+                color: red;
+                background: yello;
+            }
+        </style>
+        
+        
+    </head>
+    <body>
+        <div id="conteudo">Conteudo</div>    
+        <script>
+            let elConteudo = document.getElementById('conteudo');
+            elConteudo.classList.add('estilo1');
+            elConteudo.onclick = function(evt) {
+                alert('Elemento clicado');
+            };
+            elConteudo.innerHTML = '<h1>Teste</h1><h2>Conteudo criado via JS</h2>';
+        </script>
+    </body>
+</html>
