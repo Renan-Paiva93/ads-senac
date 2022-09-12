@@ -7,21 +7,26 @@
     <body>
         <article>
             <h1> Exemplo 1 - Carregar 1000 itens ao clicar no botão </h1>
-            <ul id="conteudo">  
+            <ul id="conteudo">
+                <!--<!-- afterbegin -->
+                
+                <!-- beforreend -->
             </ul>
-            <button id="btncarregar"></button>
+            <button id="btncarregar">Carregar itens</button>
         </article>
-
+        <!<!-- afterend -->
+        
         <script>
             function adicionar(i) {
-                document.getElementById('conteudo').insertAdjacentHTML();
+                document.getElementById('conteudo').insertAdjacentHTML('afterbegin',
+                '<li>Item' + i + '</li>');
             }
 
 
 
             document.getElementById('btncarregar').onclick = function () {
                 for (let i = 0; i < 1000; i++) {
-
+                  adicionar(i);  
                 }
             }
         </script>
