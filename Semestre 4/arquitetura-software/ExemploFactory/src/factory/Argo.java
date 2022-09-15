@@ -1,6 +1,6 @@
 package factory;
 
-public class Argo {
+public class Argo implements Carro{
 
     private String modelo;
     private double preco;
