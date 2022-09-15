@@ -1,9 +1,8 @@
 
 package cliente;
 
-import factory.Carro;
-import factory.Fabrica;
-import factory.ListaCarros;
+import factory.*;
+
 
 public class UsaFactory {
 
@@ -11,13 +10,16 @@ public class UsaFactory {
     public static void main(String[] args) {
         
         try{
-        int n=2;
+        int n=0;
         
-        //alterar para padrão strategy 
-        Carro carro = Fabrica.factoryMethod(ListaCarros.values()[n]);
+        //pode alterar para padrão strategy 
+        FabricaFiat fiat = new FabricaFiat();
+        Carro carro = fiat.factoryMethod(ListaCarros.values()[n]);
+        
+        
         System.out.println("Modelo: " + carro.getModelo());
         System.out.println("Preço: " + carro.getPreco());
-        } catch(ArrayIndexOutOfBoundsException e){
+        } catch(ArrayIndexOutOfBoundsException | NullPointerException e){
             System.out.println("Carro inválido!");
         }
     }

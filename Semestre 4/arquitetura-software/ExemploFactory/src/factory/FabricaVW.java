@@ -2,10 +2,12 @@
 package factory;
 
 //Croncrete creator
-public class Fabrica {
+public class FabricaVW implements InterfaceFabrica{
 
     //lista de carro
-    public static Carro factoryMethod(ListaCarros carro) {
+    @Override
+    public Carro factoryMethod(ListaCarros carro) {
+        
         Carro car = null;
         if (carro.equals(ListaCarros.FOX)) {
             car = new Fox("Cross fox", 45000);
