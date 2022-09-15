@@ -12,11 +12,13 @@ public class Argo implements Carro{
         this.modelo = modelo;
         this.preco = preco;
     }
-
+    
+    @Override
     public String getModelo() {
         return modelo;
     }
-
+    
+    @Override
     public double getPreco() {
         return preco;
 

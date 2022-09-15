@@ -10,7 +10,7 @@ public class UsaFactory {
     public static void main(String[] args) {
         
         try{
-        int n=0;
+        int n=4;
         
         //pode alterar para padrão strategy 
         FabricaFiat fiat = new FabricaFiat();
@@ -19,6 +19,8 @@ public class UsaFactory {
         
         System.out.println("Modelo: " + carro.getModelo());
         System.out.println("Preço: " + carro.getPreco());
+        
+        
         } catch(ArrayIndexOutOfBoundsException | NullPointerException e){
             System.out.println("Carro inválido!");
         }
