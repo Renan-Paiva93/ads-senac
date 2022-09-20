@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Exemplo JS2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <article>
+            <h1>Ex. JS 2</h1>
+            <div id="conteudo">
+                
+            </div>
+            <button id='btncarregar'>Carregar DADOS</button>
+            <script>
+                
+                function adicionarItem(nome, email, nascimento) {
+                    document.getElementById('conteudo').innerHTML = 
+                            '<h2> Nome: ' + nome + '</h2>' +
+                            '<p> E-mail: ' + email + '</p>' +
+                                '<p> Telefone: ' + telefone + '</p>' +
+                }
+                
+                //document.getElementById('btncarregar').onclick = function() {/*...*/};
+                  document.getElementById('btncarregar').addEventListener('click', function() {
+                      let dados = {
+                          nome: 'Fulano da Silva',
+                          email: 'fulano@teste.com.br',
+                          telefone: 11 2222222
+                      }
+                      adicionarItem(dados.nome, dados.email, dados.telefone);
+                  })
+            </script>
+        </article>
+    </body>
+</html>
