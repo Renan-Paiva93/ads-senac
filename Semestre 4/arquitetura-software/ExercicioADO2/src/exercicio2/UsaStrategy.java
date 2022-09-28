@@ -17,9 +17,10 @@ public class UsaStrategy {
         
         Orcamento orcamento=new Orcamento();
         orcamento.setLista(lista);
+        System.out.println("Total dos impostos: " + orcamento.total());
         
-        double valorImposto = Impostos.values() [0].instance().calcular(orcamento);
-        System.out.println(valorImposto);
+        double valorImposto = Impostos.values() [2].instance().calcular(orcamento);
+        System.out.println("Valor do imposto: "+valorImposto);
     }
     
 }
