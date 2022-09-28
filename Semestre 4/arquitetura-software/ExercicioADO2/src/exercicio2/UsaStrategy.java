@@ -17,6 +17,9 @@ public class UsaStrategy {
         
         Orcamento orcamento=new Orcamento();
         orcamento.setLista(lista);
+        
+        double valorImposto = Impostos.values() [0].instance().calcular(orcamento);
+        System.out.println(valorImposto);
     }
     
 }
